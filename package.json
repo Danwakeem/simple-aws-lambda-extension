@@ -1,0 +1,16 @@
+{
+  "name": "simple-aws-lambda-extension",
+  "version": "0.0.1",
+  "description": "A simple to understand AWS Lambda Extension",
+  "main": "index.js",
+  "repository": "https://github.com/Danwakeem/simple-aws-lambda-extension",
+  "author": "Danwakeem",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "deploy": "sls deploy"
+  },
+  "devDependencies": {
+    "serverless": "^3.26.0"
+  }
+}

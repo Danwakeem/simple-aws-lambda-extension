@@ -1,0 +1,31 @@
+service: simple-aws-lambda-extension
+configValidationMode: error
+
+provider:
+  name: aws
+  versionFunctions: false
+  runtime: nodejs18.x
+  logRetentionInDays: 1
+  environment:
+    STAGE: ${opt:stage, 'dev'}
+    VERBOSE: 1
+
+layers:
+  simpleExtension:
+    path: src/simple-extension
+    name: simple-extension-${opt:stage, 'dev'}
+    description: My extension code
+    compatibleRuntimes:
+      - nodejs14.x
+      - nodejs16.x
+      - nodejs18.x
+    compatibleArchitectures:
+      - x86_64
+      - arm64
+
+functions:
+  testFunction:
+    handler: src/index.handler
+    timeout: 10
+    layers:
+      - !Ref SimpleExtensionLambdaLayer

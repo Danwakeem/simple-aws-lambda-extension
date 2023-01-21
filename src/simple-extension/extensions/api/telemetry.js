@@ -1,5 +1,5 @@
 const http = require('http');
-const { EventEmitter } = require('node:events')
+const { EventEmitter } = require('node:events');
 
 const TelemetryAPIService = ({
   extensionIdentifier

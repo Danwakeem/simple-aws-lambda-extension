@@ -53,5 +53,11 @@ const logger = require('./util/logger');
 
     // The next call to the `.next` lambda know that my extension is done executing
     logger.log('Extension code complete: ', event.eventType);
+
+    // Once we receive the shutdown event we want to clean up our extension by
+    // shutting down our telemetry server.
+    if (event.eventType === EventTypes.Shutdown) {
+      await telemetryAPIService.shutDownServer();
+    }
   }
 })();

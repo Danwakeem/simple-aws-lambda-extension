@@ -34,7 +34,7 @@ const TelemetryAPIService = ({
           }
         });
       })
-      .listen(4243, sandboxHostname)
+      .listen(4243, sandboxHostname);
   }
 
   const registerTelemetry = () => new Promise((resolve, reject) => {
@@ -73,13 +73,17 @@ const TelemetryAPIService = ({
 
   const waitForPlatformDoneEvent = async () => new Promise((resolve) => {
     telemetryEventEmitter.on(completeEvent, resolve);
-  })
+  });
+
+  const shutDownServer = () => new Promise((resolve) => {
+    server.close(resolve);
+  });
 
   return {
-    server,
     registerTelemetry,
     startServer,
     waitForPlatformDoneEvent,
+    shutDownServer,
   };
 };
 
